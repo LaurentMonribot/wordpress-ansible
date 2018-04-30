@@ -1,0 +1,3 @@
+---
+- name: start mysql (if not working, start server manually with ssh and command  service mysqld start )
+  service: name=mysqld state=started
