@@ -1,10 +1,20 @@
 ---
+- name: Get mysql community edition
+  yum:  name=http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+        state=present
+
+- name: install mysql CE
+  yum: name=mysql-server state=present
+
+- name: install MySql-Python
+  yum: name=MySQL-python state=present
+
 - name: set the root password
   mysql_user: name=root host="{{item}}"
               password={{ mysql_root_pass }}
               priv='*.*:ALL,GRANT'
               login_user=root
-              login_password=""
+              login_password={{ mysql_root_pass }}
               state=present
 
   with_items:
